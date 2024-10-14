@@ -1,0 +1,111 @@
+:root {
+    --main-font: "Avantgarde", sans-serif;
+    --main-text-color: #111111;
+    --hover-text-color: #333333;
+    --main-background-color: rgba(200, 200, 200, .8);
+    --nav-background-color: rgba(170,170,220, .8);
+    --background-odd: rgba(170, 200, 210, .8);
+    --background-even: rgba(180, 210, 180, .8);
+}
+
+html {
+    background-image: url("../images/background.jpg");
+    background-size: cover;
+    color: var(--main-text-color);
+    font-family: var(--main-font);
+}
+
+body {
+    max-width: 50em;
+    margin: auto;
+}
+
+header {
+    text-align: center;
+}
+
+nav, footer {
+    background-color: var(--nav-background-color);
+    padding: 2%;
+}
+
+nav a {
+    display: inline-block;
+    text-align: center;
+    height: 3em;
+    line-height: 3em;
+}
+
+nav a:link {
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+    background-color: var(--main-text-color);
+    color: var(--nav-background-color);
+}
+
+.activePage {
+    background-color: var(--main-background-color);
+}
+
+main {
+    background-color: var(--main-background-color);
+    padding: 4%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+h1 {
+    text-transform: uppercase;
+}
+
+p {
+    text-indent: 2em;
+}
+
+figure {
+    text-align: center;
+    border: .1em solid var(--main-text-color);
+    width: 100%;
+    margin: 0;
+}
+
+figcaption {
+    font-size: small;
+}
+
+img {
+    max-width: 100%;
+}
+
+a:hover {
+    color: var(--hover-text-color);
+}
+
+cite {
+    font-size: xx-small;
+}
+
+.rounded-corners {
+    border-radius: .5em;
+}
+
+
+/* form styling */
+#message {
+    text-indent: 0px;
+}
+
+.mistake {
+    color: red;    
+}
+
+#form p {
+    text-indent: 0;
+}
+
+.hide {
+    display: none;
+}

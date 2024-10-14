@@ -1,0 +1,22 @@
+nav a {
+    display: block;
+    text-align: center;    
+    padding: .5em;
+    border: thin solid rgb(121, 115, 86);
+    margin: auto;
+    width: 90%;
+}
+
+nav {
+    grid-template-columns: 100%;
+    padding: .1em;
+}
+
+/* form styling */
+#answers {
+    display: block;
+}
+
+#answers div {
+    margin-bottom: 5%;
+}

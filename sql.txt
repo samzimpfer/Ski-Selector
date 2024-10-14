@@ -1,0 +1,125 @@
+CREATE TABLE tblQuestions (
+    fldName VARCHAR(40) NOT NULL,
+    fldNumber TINYINT(1) DEFAULT NULL,
+    fldText VARCHAR(500) DEFAULT NULL,
+    PRIMARY KEY (fldName)
+)
+
+INSERT INTO tblQuestions
+(fldName, fldNumber, fldText)
+VALUES
+('use', 1, 'Do you plan to use your skis mostly for all-mountain skiing, powder skiing, or park skiing?'),
+('all-mountain', 2, 'Would you like to rank skis by price or durability?'),
+('powder', 2, 'Would you like to rank skis by price, durability, waist width, or key characteristic?'),
+('park', 2, 'Would you like to rank skis by price, durability, flex, or swing weight?<br><b>Flex</b> refers to how soft/stiff a ski is. A softer ski is more playful but offers less stability in most situations. It is measured on a 1-10 scale, 10 being the stiffest.<br><b>Swing weight</b> refers to how light a ski feels while spinning and changing spinning directions. It is measured on a 1-10 scale, 10 being the heaviest.'),
+('characteristic', 3, 'Enter a characteristic you want from your ski.<br><b>Floatation:</b> how well the ski floats in deep powder.<br><b>Playfulness:</b> how light the ski is and how quickly the ski reacts.<br><b>Versatility:</b> how well the ski performs in a variety of conditions.<br><b>Crud performance:</b> how well the ski performs specifically in suboptimal snow conditions.'),
+('flex', 3, 'Would you prefer a softer ski, a stiffer ski, or something in between?'),
+('ski', 4, 'Your top skis are listed below. Choose the ski you like the most.')
+
+CREATE TABLE tblAnswers (
+    pmkAnswerId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    fldText VARCHAR(40) DEFAULT NULL,
+    fldQuestion VARCHAR(40) NOT NULL,
+    fldTarget VARCHAR(40) NOT NULL,
+    FOREIGN KEY (fldQuestion) REFERENCES tblQuestions(fldName),
+    FOREIGN KEY (fldTarget) REFERENCES tblQuestions(fldName)
+)
+
+INSERT INTO tblAnswers
+(fldText, fldQuestion, fldTarget)
+VALUES
+('All-mountain', 'use', 'all-mountain'),
+('Powder', 'use', 'powder'),
+('Park', 'use', 'park'),
+('Price', 'all-mountain', 'ski'),
+('Durability', 'all-mountain', 'ski'),
+('Price', 'powder', 'ski'),
+('Durability', 'powder', 'ski'),
+('Waist-width', 'powder', 'ski'),
+('Characteristic', 'powder', 'characteristic'),
+('Price', 'park', 'ski'),
+('Durability', 'park', 'ski'),
+('Swing-weight', 'park', 'ski'),
+('Flex', 'park', 'flex'),
+('Floatation', 'characteristic', 'ski'),
+('Playfulness', 'characteristic', 'ski'),
+('Versatility', 'characteristic', 'ski'),
+(' Crud-performance', 'characteristic', 'ski'),
+('Softer', 'flex', 'ski'),
+('In-between', 'flex', 'ski'),
+('Stiffer', 'flex', 'ski')
+
+
+
+
+CREATE TABLE tblAllMountainSkis (
+    pmkSkiId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    fldName VARCHAR(40) DEFAULT NULL,
+    fldLength VARCHAR(40) DEFAULT NULL,
+    fldWidth VARCHAR(40) DEFAULT NULL,
+    fldPrice SMALLINT(3) DEFAULT NULL,
+    fldDurability TINYINT(1) DEFAULT NULL,
+    fldLink VARCHAR(200) DEFAULT NULL
+)
+
+INSERT INTO tblAllMountainSkis
+(fldName, fldLength, fldWidth, fldPrice, fldDurability, fldLink)
+VALUES
+('Line Chronic','[164,171,178,185]','[95,101]',550,3,'https://lineskis.com/en-us/p/chronic-94-skis-2024'),
+('Line Tom Wallisch Pro','[157,164,171,178]','[95]',650,3,'https://lineskis.com/en-us/p/tom-wallisch-pro-skis-2024'),
+('K2 Poacher','[163,170,177,184]','[96]',600,5,'https://k2snow.com/en-us/p/poacher-mens-skis-2024'),
+('K2 Reckoner','[163,170,177,184]','[102,112]',700,5,'https://k2snow.com/en-us/c/skis/reckoner-skis/'),
+('Faction Prodigy 2','[159,165,171,178,183,189]','[98]',750,5,'https://factionskis.com/products/prodigy-2-ski'),
+('Volkl Revolt','[157,165,173,181]','[90,96,104]',600,8,'https://volkl.com/en-us/p/revolt-96-2024'),
+('Armada ARV','[157,164,171,178,185]','[88,94,100,106,116]',750,6,'https://www.armadaskis.com/en-us/shop/ski/ski-models/arv.html')
+
+CREATE TABLE tblPowderSkis (
+    pmkSkiId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    fldName VARCHAR(40) DEFAULT NULL,
+    fldLength VARCHAR(40) DEFAULT NULL,
+    fldWidth VARCHAR(40) DEFAULT NULL,
+    fldPrice SMALLINT(3) DEFAULT NULL,
+    fldDurability TINYINT(1) DEFAULT NULL,
+    fldCharacteristics VARCHAR(40),
+    fldLink VARCHAR(200) DEFAULT NULL
+)
+
+INSERT INTO tblPowderSkis
+(fldName, fldLength, fldWidth, fldPrice, fldDurability, fldCharacteristics, fldLink)
+VALUES
+('ON3P Jeffrey','[161,171,176,181,186,191]','[100,108,118]',850,9,'["Playfulness","Versatility"]','https://shop.on3pskis.com/search?q=jeffrey&_pos=1&_psq=jeffer&_ss=e&_v=1.0'),
+('Salomon QST Blank','[178,186,194]','[112]',800,8,'["Floatation","Playfulness"]','https://www.salomon.com/en-us/shop/product/qst-blank-li4908.html#color=84463'),
+('Rossignol Sender Free','[176,184,191]','[110]',900,7,'["Versatility","Playfulness"]','https://www.rossignol.com/us-en/sender-free-110-open-RAMMB01000.html'),
+('Blizzard Rustler','[162,168,174,180,186,192]','[102,112]',850,7,'["Floatation","Playfulness"]','https://www.blizzard-tecnica.com/us/en/men/skis/freeride-1/rustler/rustler-11-flat'),
+('Nordica Unleashed','[174,180,186,191]','[108,114]',850,8,'["Floatation","Crud-performance"]','https://www.nordica.com/usa/en/men/skis/freeski/unleashed'),
+('K2 Mindbender','[177,182,187,194]','[106,108,116]',750,6,'["Floatation","Crud-performance"]','https://k2snow.com/en-us/c/skis/mindbender-skis/')
+
+CREATE TABLE tblParkSkis (
+    pmkSkiId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    fldName VARCHAR(40) DEFAULT NULL,
+    fldLength VARCHAR(40) DEFAULT NULL,
+    fldWidth VARCHAR(40) DEFAULT NULL,
+    fldPrice SMALLINT(3) DEFAULT NULL,
+    fldDurability TINYINT(1) DEFAULT NULL,
+    fldFlex TINYINT(1) DEFAULT NULL,
+    fldSwingWeight TINYINT(1) DEFAULT NULL,
+    fldLink VARCHAR(200) DEFAULT NULL
+)
+
+INSERT INTO tblParkSkis
+(fldName, fldLength, fldWidth, fldPrice, fldDurability, fldFlex, fldSwingWeight, fldLink)
+VALUES
+('ON3P Mango','[161,171,176,181,186]','[90,100,110]',800,9,4,4,'https://shop.on3pskis.com/search?q=mango&options%5Bprefix%5D=last'),
+('Vishnu Wet','[171,177,183,189]','[88]',500,7,2,2,'https://www.vishnufreeski.com/products/vishnuwet'),
+('Vishnu Wide','[177,183,189]','[106]',530,7,3,5,'https://www.vishnufreeski.com/products/vishnuwide'),
+('Vishnu Key','[169,180,189]','[95]',530,7,5,4,'https://www.vishnufreeski.com/products/key-presale'),
+('Line Blend','[164,171,178,185]','[100]',650,3,2,3,'https://lineskis.com/en-us/p/blend-skis-2024'),
+('1000 Skis','[161,171,178,186]','[95]',800,6,3,4,'https://1000skis.com/park/'),
+('Armada Edollo','[164,172,180]','[95]',750,6,5,6,'https://www.armadaskis.com/en-us/shop/product/edollo-ra0471.html#color=28544'),
+('Armada Bdog','[164,172,180]','[94]',675,6,3,5,'https://www.armadaskis.com/en-us/shop/product/bdog-ra0472.html#color=28190')
+
+CREATE TABLE tblSavedResponses (
+    fldQuestionName VARCHAR(40) NOT NULL,
+    fldAnswer VARCHAR(40) DEFAULT NULL,
+    PRIMARY KEY (fldQuestionName)
+)

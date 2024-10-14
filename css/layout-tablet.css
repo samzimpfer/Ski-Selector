@@ -1,0 +1,16 @@
+main, .formPage{
+    grid-template-areas:
+        "titlebox"
+        "box1"
+        "box2"
+        "box3"
+        "box4"
+        "box5"
+        "footerbox";
+    grid-template-columns: 100%;
+    grid-column-gap: 0;
+}
+
+section {
+    padding-bottom: 2%;
+}
