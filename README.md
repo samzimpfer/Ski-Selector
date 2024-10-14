@@ -6,4 +6,4 @@ All of the code in this project is orignal and written by me. I designed the for
 
 I plan to expand on this project in the future by improving the user interface and by contacting ski companies so they can opt to have their skis added to the database in order to become more discoverable to their customers. At some point I would like to make this a big enough platform that getting a ski on the site is a paid service.
 
-The following link will take you to the website: [https://szimpfer.w3.uvm.edu/cs2450/Ski-Selector/form.php](url)
+This [link](https://szimpfer.w3.uvm.edu/cs2450/Ski-Selector/form.php) will take you to the website.
